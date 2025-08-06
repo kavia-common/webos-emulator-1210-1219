@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import "./Window.css";
 import AppFinder from "../windows/AppFinder";
 import AppSettings from "../windows/AppSettings";
@@ -55,6 +55,23 @@ export default function Window({
 
   // --- Drag interactivity logic ---
 
+  // Prevent iframe content or overlays from breaking drag by showing a fullscreen shield during drag
+  const [isDragging, setIsDragging] = useState(false);
+
+  // Clean up drag listeners robustly
+  useEffect(() => {
+    if (!isDragging) return;
+    // On unmount - clean up all handlers
+    return () => {
+      window.removeEventListener("mousemove", handleMouseMove);
+      window.removeEventListener("mouseup", handlePointerUp);
+      window.removeEventListener("touchmove", handleTouchMove);
+      window.removeEventListener("touchend", handlePointerUp);
+      window.removeEventListener("touchcancel", handlePointerUp);
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isDragging]);
+
   // Mouse and touch: unified pointer handlers
   const handlePointerDown = (e) => {
     if (disabled) return;
@@ -80,6 +97,8 @@ export default function Window({
       origX: x,
       origY: y,
     });
+    setIsDragging(true);
+
     // Ensure window comes to front on drag
     focusWindow?.();
 
@@ -123,6 +142,8 @@ export default function Window({
   const handlePointerUp = () => {
     draggingRef.current = false;
     setDrag(null);
+    setIsDragging(false);
+
     window.removeEventListener("mousemove", handleMouseMove);
     window.removeEventListener("mouseup", handlePointerUp);
     window.removeEventListener("touchmove", handleTouchMove);
@@ -193,16 +214,32 @@ export default function Window({
       ref={ref}
       onMouseDown={focusWindow}
     >
+      {/* Overlay to block iframe/inner content pointer events during drag */}
+      {isDragging && (
+        <div
+          className="macos-window-overlay-drag-blocker"
+          style={{
+            position: "fixed",
+            top: 0, left: 0, width: "100vw", height: "100vh",
+            zIndex: 9999,
+            pointerEvents: "all",
+            cursor: drag ? "grabbing" : "grab",
+          }}
+        />
+      )}
       <div
         className="macos-window-titlebar"
-        // Fix: Listen for pointer events to support all input types (mouse, touch, pen)
+        // Force pointer events always on for drag region
         onPointerDown={handlePointerDown}
-        style={{ cursor: disabled ? "default" : drag ? "grabbing" : "grab", userSelect: "none", WebkitUserSelect: "none" }}
+        style={{
+          cursor: disabled ? "default" : drag ? "grabbing" : "grab",
+          userSelect: "none",
+          WebkitUserSelect: "none",
+          pointerEvents: "auto",
+        }}
         tabIndex={-1}
         role="toolbar"
         aria-label={`${title} Drag Bar`}
-        // Keyboard-movable could be added here for accessibility
-        // Remove onMouseDown and onTouchStart, since onPointerDown supersedes both.
       >
         <span className="window-traffic-lights">
           <span

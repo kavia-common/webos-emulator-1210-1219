@@ -78,3 +78,10 @@
   font-family: inherit;
   padding: 0px;
 }
+
+/* Overlay used in Window.js to block iframe/content pointer events during drag */
+.macos-window-overlay-drag-blocker {
+  pointer-events: all !important;
+  background: transparent;
+  z-index: 9999;
+}

@@ -3,6 +3,7 @@ import "./Window.css";
 import AppFinder from "../windows/AppFinder";
 import AppSettings from "../windows/AppSettings";
 import AppNotes from "../windows/AppNotes";
+import AppCalculator from "../windows/AppCalculator";
 
 // PUBLIC_INTERFACE
 export default function Window({
@@ -201,6 +202,9 @@ export default function Window({
       break;
     case "notes":
       content = <AppNotes />;
+      break;
+    case "calculator":
+      content = <AppCalculator />;
       break;
     default:
       content = <div style={{ padding: 24 }}>No app content available</div>;

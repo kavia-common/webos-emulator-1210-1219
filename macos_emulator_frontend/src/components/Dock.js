@@ -3,6 +3,7 @@ import "./Dock.css";
 import DockIconFinder from "../icons/DockIconFinder";
 import DockIconSettings from "../icons/DockIconSettings";
 import DockIconNotes from "../icons/DockIconNotes";
+import DockIconCalculator from "../icons/DockIconCalculator";
 
 // PUBLIC_INTERFACE
 export default function Dock({ openApp, windows, windowOrder }) {
@@ -17,6 +18,7 @@ export default function Dock({ openApp, windows, windowOrder }) {
     { appId: "finder", icon: <DockIconFinder />, label: "Finder" },
     { appId: "settings", icon: <DockIconSettings />, label: "Settings" },
     { appId: "notes", icon: <DockIconNotes />, label: "Notes" },
+    { appId: "calculator", icon: <DockIconCalculator />, label: "Calculator" },
   ];
 
   function isAppOpen(appId) {

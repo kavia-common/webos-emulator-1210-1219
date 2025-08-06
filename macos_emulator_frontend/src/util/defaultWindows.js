@@ -38,6 +38,18 @@ const defaultWindows = [
     maximized: false,
     closed: false,
   },
+  {
+    id: "win-calculator",
+    appId: "calculator",
+    title: "Calculator",
+    x: 240,
+    y: 190,
+    w: 250,
+    h: 350,
+    minimized: false,
+    maximized: false,
+    closed: true      // Start hidden/closed; appear when dock icon clicked
+  }
 ];
 
 export default defaultWindows;

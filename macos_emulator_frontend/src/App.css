@@ -1,0 +1,78 @@
+/* --- MacOS Emulator Global Theming, Color Vars, and Layout Resets --- */
+
+/* Light and Dark themes */
+:root {
+  --macos-bg-gradient-1: #bfdbe9;
+  --macos-bg-gradient-2: #0179fe;
+  --macos-bg-gradient-3: #5eee84;
+  --macos-bg-gradient-4: #f0e88d;
+  --macos-menu-bar-bg: rgba(255,255,255,0.22);
+  --macos-dock-bg: rgba(240,240,240,0.38);
+  --macos-window-bg: #fff;
+  --macos-window-shadow: rgba(0,0,0,0.16);
+  --macos-menu-text: #f8f8f8;
+  --macos-accent: #0179fe;
+  --macos-primary: #007AFF;
+  --macos-secondary: #5E5E5E;
+  --macos-accent2: #FF9500;
+
+  --font-family-global: "San Francisco", "Helvetica Neue", Arial, sans-serif;
+  --text-primary: #232d2d;
+  --text-secondary: #546779;
+}
+
+[data-theme="dark"] {
+  --macos-bg-gradient-1: #31394c;
+  --macos-bg-gradient-2: #0e295a;
+  --macos-bg-gradient-3: #145a36;
+  --macos-bg-gradient-4: #484507;
+  --macos-menu-bar-bg: rgba(54,63,77,0.40);
+  --macos-dock-bg: rgba(30,25,50, 0.44);
+  --macos-window-bg: #232433f8;
+  --macos-window-shadow: rgba(16,30,45,0.29);
+  --macos-menu-text: #f6f8fc;
+  --macos-primary: #8abdfe;
+  --macos-accent: #47c2ff;
+  --text-primary: #fafcff;
+  --text-secondary: #a3b0ef;
+}
+
+html, body, #root {
+  width: 100vw;
+  height: 100vh;
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+  font-family: var(--font-family-global);
+  background: transparent;
+  overflow: hidden;
+}
+
+.macos-app {
+  width: 100vw; height: 100vh;
+  min-height: 100vh;
+  background: transparent;
+  overscroll-behavior-x: none;
+  overscroll-behavior-y: none;
+  user-select: none;
+  scrollbar-width: thin;
+  transition: background 0.3s, color 0.2s;
+  position: relative;
+}
+
+/* Remove scrollbars for global content where possible */
+::-webkit-scrollbar {
+  width: 8px; background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: #d5e3f6bb;
+  border-radius: 8px;
+}
+
+@media (max-width: 800px) {
+  .macos-app { font-size: 14.2px; }
+}
+
+@media (max-width: 460px) {
+  .macos-app, html, body, #root { font-size: 11.2px; }
+}

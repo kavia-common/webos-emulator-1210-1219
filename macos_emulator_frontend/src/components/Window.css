@@ -1,0 +1,80 @@
+.macos-window {
+  pointer-events: auto;
+  background: var(--macos-window-bg, #fff);
+  border-radius: 9px;
+  box-shadow: 0 3.5px 18px 0 var(--macos-window-shadow, rgba(0,0,0,0.14));
+  min-width: 260px; min-height: 160px;
+  max-width: 98vw; max-height: 91vh;
+  overflow: hidden;
+  user-select: none;
+  outline: none;
+  transition: box-shadow 0.13s, outline 0.13s, transform 0.15s cubic-bezier(.44,1.24,.65,1.01);
+}
+
+.macos-window.active {
+  box-shadow: 0 14px 41px 0 #0079fe1b, 0 2.5px 16px 0 #0079FE14;
+  outline: 2px solid #1fa6ff44;
+  transform: scale(1.013);
+}
+
+.macos-window.inactive {
+  opacity: 0.99;
+  outline: none;
+}
+
+.macos-window-titlebar {
+  background: linear-gradient(180deg, #edf3fa 80%, #e1e6e9 100%);
+  border-bottom: 1.1px solid #d2d8e0b0;
+  height: 37px; min-height: 33px;
+  line-height: 37px;
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  padding: 0 14px 0 8px;
+  font-family: 'San Francisco', 'Helvetica Neue', Arial, sans-serif;
+  font-size: 16px;
+  color: #222;
+  font-weight: 500;
+  border-radius: 9px 9px 0 0;
+  cursor: grab;
+}
+.macos-window.maximized .macos-window-titlebar {
+  border-radius: 9px 9px 0 0;
+}
+.window-traffic-lights {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-right: 14px;
+  margin-left: 0px;
+}
+.traffic-btn {
+  width: 14px; height: 14px;
+  border-radius: 50%;
+  display: inline-block;
+  margin-right: 1px;
+  box-sizing: border-box;
+  border: 0.5px solid #b0bbc9;
+  cursor: pointer;
+  transition: transform 0.10s;
+}
+.traffic-btn.close { background: #fe5f58; border-color: #db3e37; }
+.traffic-btn.min   { background: #fdbc2e; border-color: #e2a13f;}
+.traffic-btn.max   { background: #28c841; border-color: #1bae30;}
+.traffic-btn:active { transform: scale(0.93);}
+.macos-window-title {
+  font-size: 16px; font-weight: 500;
+  margin-left: 0;
+  color: #221f15;
+  text-shadow: 0 1.5px 8px #f4fcffab;
+}
+
+.macos-window-content {
+  width: 100%; height: calc(100% - 37px);
+  background: transparent;
+  overflow: auto;
+  user-select: text;
+  font-size: 14.5px;
+  font-family: inherit;
+  padding: 0px;
+}

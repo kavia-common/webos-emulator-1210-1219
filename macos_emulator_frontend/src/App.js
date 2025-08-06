@@ -83,9 +83,6 @@ function AppRoot() {
 
   // PUBLIC_INTERFACE
   const moveWindow = (id, x, y) => {
-    // Debug: log moveWindow call
-    // eslint-disable-next-line no-console
-    console.log(`[App] moveWindow for window "${id}" to (${x}, ${y})`);
     setWindows((wins) =>
       wins.map((w) =>
         w.id === id ? { ...w, x, y, maximized: false } : w

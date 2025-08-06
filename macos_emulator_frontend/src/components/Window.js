@@ -83,9 +83,9 @@ export default function Window({
     )
       return;
 
-    // Debug: Log pointerDown event
-    // eslint-disable-next-line no-console
-    console.log(`[Window] pointerDown on window "${id}", event:`, e);
+    // Only for diagnosing drag issues in development, remove for production
+    // const _dev_logPointerDown = () => 
+    //   console.log(`[Window] pointerDown on window "${id}", event:`, e);
 
     const rawX = e.touches ? e.touches[0].clientX : e.clientX;
     const rawY = e.touches ? e.touches[0].clientY : e.clientY;
@@ -126,9 +126,7 @@ export default function Window({
     let newY = e.clientY - drag.offsetY;
     newX = clamp(newX, bounds.minX, bounds.maxX - (w || 260));
     newY = clamp(newY, bounds.minY, bounds.maxY - (h || 160));
-    // Debug: Log on drag move
-    // eslint-disable-next-line no-console
-    console.log(`[Window] handleMouseMove on window "${id}", to:`, newX, newY);
+    // Track and update window position
     moveWindow?.(newX, newY);
   };
 
@@ -143,9 +141,6 @@ export default function Window({
     let newY = touch.clientY - drag.offsetY;
     newX = clamp(newX, bounds.minX, bounds.maxX - (w || 260));
     newY = clamp(newY, bounds.minY, bounds.maxY - (h || 160));
-    // Debug: Log drag move for touch
-    // eslint-disable-next-line no-console
-    console.log(`[Window] handleTouchMove on window "${id}", to:`, newX, newY);
     moveWindow?.(newX, newY);
   };
 
@@ -225,9 +220,9 @@ export default function Window({
       className={`macos-window ${isActive ? "active" : "inactive"}${maximized ? " maximized" : ""}`}
       style={{
         ...style,
-        // Highlight while dragging for debug
+        // If dragging: apply a mild blue or focus outline or no extra effect for production
         outline: isDragging
-          ? "2.5px solid red"
+          ? "2.5px solid #68bcff"
           : (isActive ? style.outline : "none"),
       }}
       tabIndex={0}

@@ -195,13 +195,14 @@ export default function Window({
     >
       <div
         className="macos-window-titlebar"
-        onMouseDown={handlePointerDown}
-        onTouchStart={handlePointerDown}
+        // Fix: Listen for pointer events to support all input types (mouse, touch, pen)
+        onPointerDown={handlePointerDown}
         style={{ cursor: disabled ? "default" : drag ? "grabbing" : "grab", userSelect: "none", WebkitUserSelect: "none" }}
         tabIndex={-1}
         role="toolbar"
         aria-label={`${title} Drag Bar`}
         // Keyboard-movable could be added here for accessibility
+        // Remove onMouseDown and onTouchStart, since onPointerDown supersedes both.
       >
         <span className="window-traffic-lights">
           <span

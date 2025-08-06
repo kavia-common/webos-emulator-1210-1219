@@ -1,0 +1,86 @@
+.macos-dock {
+  position: fixed;
+  z-index: 1099;
+  left: 50%;
+  bottom: 14px;
+  transform: translateX(-50%);
+  min-width: 310px;
+  max-width: 82vw;
+  height: 56px;
+  padding: 8px 26px;
+  background: var(--macos-dock-bg, rgba(240,240,240, 0.38));
+  backdrop-filter: blur(13px) saturate(160%);
+  border-radius: 16px 16px 20px 20px;
+  display: flex;
+  align-items: center;
+  gap: 26px;
+  box-shadow: 0 7px 24px 0 #0002, 0 1.5px 7px #80bfff10;
+  transition: background 0.16s;
+}
+.dock-icon-wrap {
+  display: flex; flex-direction: column; align-items: center;
+  cursor: pointer;
+  height: 54px; width: 47px;
+  justify-content: flex-end;
+  margin-bottom: 0px;
+  margin-top: 0;
+  padding-top: 0;
+  transition: transform 0.15s, background 0.09s, box-shadow .14s;
+  border-radius: 13px;
+  position: relative;
+}
+.dock-icon {
+  display: block;
+  width: 43px; height: 43px;
+  margin: 0 auto;
+  border-radius: 12px;
+  background: #fdfdfde9;
+  box-shadow: 0 2px 6px #0079fe13;
+}
+.dock-label {
+  position: absolute;
+  left: 50%; transform: translateX(-50%);
+  font-size: 12px;
+  color: #246dfb;
+  font-weight: 500;
+  margin-top: -14px;
+  opacity: 0;
+  pointer-events: none;
+  background: rgba(255,255,255,.85);
+  padding: 2px 9px 2px 11px;
+  border-radius: 8px;
+  box-shadow: 0 2px 7px #2e84ea0c;
+  transition: opacity 0.18s cubic-bezier(.59,1.1,.39,1), transform .13s;
+  white-space: nowrap;
+}
+.dock-icon-wrap:hover .dock-label,
+.dock-icon-wrap:focus .dock-label {
+  opacity: 1;
+  transform: translate(-50%, -14px) scale(1.08);
+}
+
+.dock-dot {
+  margin: 0 auto;
+  display: block;
+  width: 7px; height: 7px;
+  border-radius: 50%;
+  background: #0179fe;
+  box-shadow: 0 1.5px 6px #0079fe7a;
+  margin-top: 3px;
+}
+.dock-icon-wrap.active .dock-icon {
+  box-shadow: 0 3px 17px 0 #0179fe44, 0 2.9px 14px #0079fef0;
+  background: #c6e0fded;
+  transform: scale(1.08);
+}
+
+@media (max-width: 600px) {
+  .macos-dock {
+    min-width: 180px; height: 42px; font-size: 11px;
+    padding: 1.5px 11px;
+    gap: 15px;
+  }
+  .dock-icon {
+    width: 28px; height: 28px;
+  }
+}

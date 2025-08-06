@@ -1,0 +1,101 @@
+.macos-menu-bar {
+  position: fixed;
+  z-index: 2000;
+  top: 0; left: 0;
+  width: 100%;
+  height: 30px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  background: var(--macos-menu-bar-bg, rgba(255,255,255,0.2));
+  backdrop-filter: blur(16px) saturate(160%);
+  box-shadow: 0 0.5px 0 rgba(0,0,0,0.045);
+  font-family: 'San Francisco', 'Helvetica Neue', Arial, sans-serif;
+  font-size: 13.5px;
+  color: var(--macos-menu-text, #f8f8f8);
+  user-select: none;
+  -webkit-user-select: none;
+  padding: 0 16px;
+}
+
+.menu-left, .menu-right {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+.menu-center {
+  flex: 1 1 auto;
+  display: flex;
+  justify-content: center;
+}
+.logo-apple {
+  margin-right: 4px;
+  margin-bottom: -1px;
+  width: 22px;
+  display: inline-flex;
+}
+.menu-appname {
+  font-weight: 600;
+  color: var(--macos-menu-text, #f8f8f8);
+  padding-right: 6px;
+}
+
+.menu-drop {
+  position: relative;
+  padding: 3px 7px;
+  cursor: pointer;
+}
+.menu-drop.open,
+.menu-drop:hover {
+  background: rgba(255,255,255,0.08);
+  border-radius: 4px;
+}
+.menu-dropdown-content {
+  background: rgba(37,41,55,0.97);
+  color: #f8f8f8;
+  min-width: 140px;
+  border-radius: 7px;
+  box-shadow: 0 2px 12px 0 #0001;
+  position: absolute;
+  left: 0;
+  top: 22px;
+  padding: 6px 0;
+  z-index: 20;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.menu-dropdown-content button {
+  text-align: left;
+  padding: 7px 16px;
+  background: none; border: none; color: inherit;
+  font: inherit; font-size: 13.5px;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: all 0.13s;
+}
+.menu-dropdown-content button:hover {
+  background: rgba(20,20,20,0.10);
+}
+.menu-dropdown-content hr {
+  margin: 6px 0; border: none; border-top: 1px solid #353545;
+}
+.menu-right .control-icon {
+  margin-left: 4px;
+  border-radius: 50%; cursor: pointer;
+  line-height: 1;
+  transition: background 0.1s;
+  width: 22px; height: 22px;
+  display: inline-flex;
+  align-items: center; justify-content: center;
+}
+.menu-right .control-icon:hover,
+.menu-right .control-icon:focus {
+  background: rgba(255,255,255,0.15);
+}
+.clock {
+  margin: 0 7px 0 4px; font-variant-numeric: tabular-nums;
+  font-size: 13.5px;
+  color: var(--macos-menu-text, #f8f8f8);
+}
